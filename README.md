@@ -52,23 +52,23 @@ League of Legends Analytics Platform — аналитическая платфо
 
 ## 📁 Структура проекта
 
-📦 LeagueOfLegendsAnalytics
-│
-├── 📄 [`/riot_pipeline.py`](./riot_pipeline.py/)
-├── 📄 [`/EDA.py`](./EDA.py/)
-├── 📄 [`/dashboard_etl.py`](./dashboard_etl.py/)
-├── 📄 [`/dashboard.py`](./dashboard.py/)
-├── 📄 [`/star_player_search.py`](./star_player_search.py/)
-│
-├── 📄 [`/run_daily_pipeline.bat`](./run_daily_pipeline.bat/)
-├── 📄 [`/lol_daily_pipeline.py `](./lol_daily_pipeline.py /)
-│
-├── 📄 [`/script_database.sql`](./script_database.sql/)
-├── 📄 [`/requirements.txt`](./requirements.txt/)
-│
-├── 📄 pipeline.log
-├── 📄 .env
-│
+📦 LeagueOfLegendsAnalytics<br>
+│<br>
+├── 📄 [`/riot_pipeline.py`](./riot_pipeline.py/)<br>
+├── 📄 [`/EDA.py`](./EDA.py/)<br>
+├── 📄 [`/dashboard_etl.py`](./dashboard_etl.py/)<br>
+├── 📄 [`/dashboard.py`](./dashboard.py/)<br>
+├── 📄 [`/star_player_search.py`](./star_player_search.py/)<br>
+│<br>
+├── 📄 [`/run_daily_pipeline.bat`](./run_daily_pipeline.bat/)<br>
+├── 📄 [`/lol_daily_pipeline.py`](./lol_daily_pipeline.py/)<br>
+│<br>
+├── 📄 [`/script_database.sql`](./script_database.sql/)<br>
+├── 📄 [`/requirements.txt`](./requirements.txt/)<br>
+│<br>
+├── 📄 pipeline.log<br>
+├── 📄 .env<br>
+│<br>
 └── 📄 README.md
 
 ---
