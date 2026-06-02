@@ -40,7 +40,6 @@ app.layout = dbc.Container([
 
     # KPI карточки
     dbc.Row([
-
         dbc.Col([
             dbc.Card([
                 dbc.CardBody([
