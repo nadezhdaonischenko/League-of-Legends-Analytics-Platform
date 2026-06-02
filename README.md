@@ -72,6 +72,9 @@ League of Legends Analytics Platform — аналитическая платфо
 ├── 📄 .env
 │
 └── 📄 README.md
+```
+
+---
 
 ## 📊 Источники данных
 
