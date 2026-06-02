@@ -24,31 +24,67 @@ REGIONS = {
     "sg2": "asia"
 }
 
+TAG_TO_PLATFORM = {
+    "KR": "kr",
+    "EUW": "euw1",
+    "EUNE": "eun1",
+    "NA1": "na1",
+    "RU": "ru",
+    "TR1": "tr1",
+    "JP1": "jp1"
+}
 
-def analyze_star_player(
-    star_name: str,
-    star_tag: str,
-    star_home_platform: str
-) -> pd.DataFrame:
+
+def analyze_star_player(player_id: str) -> pd.DataFrame:
     """
     Анализ активности игрока Riot по всем глобальным кластерам.
+
+    Пример:
+        analyze_star_player("Hide on bush#KR")
     """
+
+    if "#" not in player_id:
+        raise ValueError(
+            "Необходимо указать Riot ID "
+            "в формате Name#Tag "
+            "(например: Hide on bush#KR)."
+        )
+
+    star_name, star_tag = player_id.split("#", 1)
+
+    star_home_platform = TAG_TO_PLATFORM.get(
+        star_tag.upper()
+    )
+
+    if not star_home_platform:
+        raise ValueError(
+            f"Неизвестный тег региона: {star_tag}"
+        )
+
+    star_home_cluster = REGIONS.get(
+        star_home_platform,
+        "europe"
+    )
 
     print("\n=== Анализ звездного игрока ===")
 
     start_ts, end_ts = get_current_month_timestamps()
 
-    star_home_cluster = REGIONS.get(star_home_platform, "europe")
-
     print(
         f"Поиск игрока "
-        f"{star_name}#{star_tag} "
+        f"{player_id} "
         f"({star_home_platform.upper()})"
     )
 
-    star_pipeline = RiotDataPipeline(platform_id=star_home_platform, cluster_override=star_home_cluster)
+    star_pipeline = RiotDataPipeline(
+        platform_id=star_home_platform,
+        cluster_override=star_home_cluster
+    )
 
-    star_puuid = star_pipeline.fetch_puuid_by_riot_id(star_name, star_tag)
+    star_puuid = star_pipeline.fetch_puuid_by_riot_id(
+        star_name,
+        star_tag
+    )
 
     if not star_puuid:
         print("Игрок не найден.")
@@ -59,11 +95,20 @@ def analyze_star_player(
         f"PUUID: {star_puuid[:12]}..."
     )
 
-    pipeline_asia = RiotDataPipeline(platform_id="kr", cluster_override="asia")
+    pipeline_asia = RiotDataPipeline(
+        platform_id="kr",
+        cluster_override="asia"
+    )
 
-    pipeline_europe = RiotDataPipeline(platform_id="euw1", cluster_override="europe")
+    pipeline_europe = RiotDataPipeline(
+        platform_id="euw1",
+        cluster_override="europe"
+    )
 
-    pipeline_americas = RiotDataPipeline(platform_id="na1", cluster_override="americas")
+    pipeline_americas = RiotDataPipeline(
+        platform_id="na1",
+        cluster_override="americas"
+    )
 
     print("Сбор матчей по кластерам...")
 
@@ -99,7 +144,7 @@ def analyze_star_player(
     )
 
     star_row = {
-        "riot_id": f"{star_name}#{star_tag}",
+        "riot_id": player_id,
         "puuid": star_puuid,
         "home_platform": star_home_platform.upper(),
         "home_cluster": star_home_cluster.upper(),
@@ -111,19 +156,35 @@ def analyze_star_player(
 
     df_star = pd.DataFrame([star_row])
 
-    print("\n--- АНАЛИЗ АКТИВНОСТИ ИГРОКА ПО КЛАСТЕРАМ RIOT ---")
     print(
-        f"Игрок: {star_name}#{star_tag} | "
-        f"Домашний регион: {star_home_platform.upper()} "
+        "\n--- АНАЛИЗ АКТИВНОСТИ "
+        "ЗВЕЗДНОГО ИГРОКА ПО КЛАСТЕРАМ RIOT ---"
+    )
+
+    print(
+        f"Игрок: {player_id} | "
+        f"Домашний регион: "
+        f"{star_home_platform.upper()} "
         f"({star_home_cluster.upper()})"
     )
 
-    print(f" ├─ Матчей в Азии (ASIA):         {count_asia}")
-    print(f" ├─ Матчей в Европе (EUROPE):     {count_europe}")
-    print(f" └─ Матчей в Америке (AMERICAS):  {count_americas}")
+    print(
+        f" ├─ Матчей в Азии (ASIA):        "
+        f"{count_asia}"
+    )
 
     print(
-        f"Общая активность за текущий месяц: "
+        f" ├─ Матчей в Европе (EUROPE):    "
+        f"{count_europe}"
+    )
+
+    print(
+        f" └─ Матчей в Америке (AMERICAS): "
+        f"{count_americas}"
+    )
+
+    print(
+        f"\nОбщая активность за текущий месяц: "
         f"{total_games} матчей."
     )
 
@@ -132,10 +193,11 @@ def analyze_star_player(
 
 if __name__ == "__main__":
 
-    df = analyze_star_player(star_name="Hide on bush", star_tag="KR", star_home_platform="kr") # Пример
+    df = analyze_star_player(
+        "Hide on bush#KR"               # Пример звездного игрока. Замените на нужного вам игрока.
+    )
 
-# Сохранение результатов в CSV (опционально)
-#    if not df.empty:
-#        df.to_csv("star_player.csv", index=False, encoding="utf-8-sig")
-
-#        print("\nФайл star_player.csv успешно сохранен.")
+    # if not df.empty:
+    #     df.to_csv("star_player.csv", index=False, encoding="utf-8-sig")
+    #
+    #     print("\nФайл star_player.csv успешно сохранен.")
