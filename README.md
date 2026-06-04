@@ -320,9 +320,7 @@ Scatter Plot показывает:
 
 Ежедневный запуск выполняется через:
 
-```text
-[run_daily_pipeline.bat](./run_daily_pipeline.bat/)
-```
+### run_daily_pipeline.bat](./run_daily_pipeline.bat/)
 
 Последовательность выполнения:
 
@@ -346,9 +344,7 @@ pipeline.log
 
 Для промышленного развертывания подготовлен DAG:
 
-```text
-[lol_daily_pipeline.py](./lol_daily_pipeline.py/)
-```
+### [lol_daily_pipeline.py](./lol_daily_pipeline.py/)
 
 Структура DAG:
 
