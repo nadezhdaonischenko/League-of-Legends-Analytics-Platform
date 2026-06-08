@@ -404,8 +404,8 @@ refresh_dashboard_tables
 Проект можно скачать командой:
 
 ```bash
-git clone https://github.com/<ВАШ_ЛОГИН>/<League-of-Legends>.git
-cd <League-of-Legends>
+git clone https://github.com/<ВАШ_ЛОГИН>/<League-of-Legends-Analytics-Platform>.git
+cd <LLeague-of-Legends-Analytics-Platform>
 ```
 
 Либо скачать архив проекта через интерфейс GitHub:
