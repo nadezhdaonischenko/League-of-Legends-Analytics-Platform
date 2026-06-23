@@ -1,7 +1,5 @@
 from datetime import date
-
 import pandas as pd
-
 
 def transform_players(df_raw_parts, players_registry):
 
