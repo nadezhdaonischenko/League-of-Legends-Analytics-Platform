@@ -33,7 +33,6 @@ def set_api_key(api_key):
         "X-Riot-Token": api_key
     })
 
-
 # ====================================================
 # 2. ЗАЩИТА ОТ RATE LIMITS
 # ====================================================
@@ -131,7 +130,6 @@ def get_current_month_timestamps():
         int(start_of_month.timestamp()),
         int(end_of_month.timestamp())
     )
-
 
 # ====================================================
 #  4. КЛАСС СБОРЩИКА ДАННЫХ
