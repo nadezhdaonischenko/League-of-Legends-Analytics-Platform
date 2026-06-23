@@ -4,7 +4,7 @@
 set PYTHONIOENCODING=utf-8
 
 :: Переход в папку проекта
-cd /d "C:\Users\dima_\Desktop\Project_LOL"
+cd /d "C:\...\Project_LOL"
 
 echo ============================= >> pipeline.log
 echo %date% %time% >> pipeline.log
