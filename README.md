@@ -34,7 +34,15 @@ League of Legends Analytics Platform — аналитическая платфо
                     Riot API
                         │
                         ▼
-              riot_pipeline.py
+                     main.py
+                (EXTRACT layer)
+                        │
+                        ▼
+              CSV/JSON files (raw data)
+                        │
+                        ▼
+              run_transform_load.py
+               (TRANSFORM + LOAD)
                         │
                         ▼
                    PostgreSQL
@@ -54,7 +62,8 @@ League of Legends Analytics Platform — аналитическая платфо
 
 📦 LeagueOfLegendsAnalytics<br>
 │<br>
-├── 📄 [riot_pipeline.py](./riot_pipeline.py/)<br>
+├── 📄 [main.py](./main.py/)<br>
+├── 📄 [run_transform_load.py](./run_transform_load.py/)<br>
 ├── 📄 [EDA.py](./EDA.py/)<br>
 ├── 📄 [dashboard_etl.py](./dashboard_etl.py/)<br>
 ├── 📄 [dashboard.py](./dashboard.py/)<br>
@@ -63,14 +72,35 @@ League of Legends Analytics Platform — аналитическая платфо
 ├── 📄 [run_daily_pipeline.bat](./run_daily_pipeline.bat/)<br>
 ├── 📄 [lol_daily_pipeline.py](./lol_daily_pipeline.py/)<br>
 │<br>
+├── 📁 extract<br>
+│   ├── 📄 [riot_client.py](./riot_client.py/)<br>
+│   ├── 📄 [extractor.py](./extractor.py/)<br>
+│   └── 📄 [datadragon.py](./datadragon.py/)<br>
+│<br>
+├── 📁 transform<br>
+│   ├── 📄 [matches_transform.py](./matches_transform.py/)<br>
+│   ├── 📄 [players_transform.py](./players_transform.py/)<br>
+│   └── 📄 [champions_transform.py](./champions_transform.py/)<br>
+│<br>
+├── 📁 load<br>
+│   ├── 📄 [db.py](./db.py/)<br>
+│   └── 📄 [loaders.py](./loaders.py/)<br>
+│<br>
+├── 📁 utils<br>
+│   ├── 📄 [config.py](./config.py/)<br>
+│   └── 📄 [file_storage.py](./file_storage.py/)<br>
+│<br>
+├── 📁 data<br>
+│   ├── 📄 raw_matches.csv<br>
+│   ├── 📄 raw_participants.csv<br>
+│   └── 📄 players_registry.json<br>
+│<br>
 ├── 📄 [script_database.sql](./script_database.sql/)<br>
 ├── 📄 [requirements.txt](./requirements.txt/)<br>
-│<br>
-├── 📄 pipeline.log<br>
 ├── 📄 .env<br>
+├── 📄 pipeline.log<br>
 │<br>
 └── 📄 README.md
-
 ---
 
 ## 📊 Источники данных
@@ -260,7 +290,7 @@ Scatter Plot показывает:
 
 Поддерживаются:
 
-- поиск игрока по Riot ID;
+- поиск игрока по нику(Name);
 - получение PUUID;
 - анализ игровой активности;
 - кросс-региональный анализ матчей.
@@ -275,18 +305,28 @@ Scatter Plot показывает:
 
 # 🔄 ETL-процесс
 
-## [riot_pipeline.py](./riot_pipeline.py/)
+## [main.py](./main.py/)
 
-Основной ETL-модуль.
+**Модуль слоя Extract**
 
 Выполняет:
 
-- сбор игроков;
-- сбор матчей;
-- сбор участников матчей;
-- расчёт игровых метрик;
-- сохранение данных в PostgreSQL;
-- создание ежедневных снимков игроков и чемпионов.
+- получение данных из Riot API;
+- сбор информации об игроках и матчах;
+- формирование реестра игроков;
+- сохранение сырых данных в CSV/JSON файлы.
+
+## [run_transform_load.py](./run_transform_load.py/)
+
+**Модуль слоёв Transform и Load.***
+
+Выполняет:
+
+- загрузку сырых данных из CSV/JSON;
+- преобразование матчей, игроков и чемпионов;
+- очистку ежедневных таблиц;
+- загрузку подготовленных данных в PostgreSQL;
+- обновление аналитических таблиц проекта.
 
 ---
 
@@ -327,7 +367,8 @@ Scatter Plot показывает:
 ```text
 run_daily_pipeline.bat
 │
-├── riot_pipeline.py
+├── main.py
+├── run_transform_load.py
 ├── EDA.py
 └── dashboard_etl.py
 ```
@@ -350,6 +391,9 @@ pipeline.log
 
 ```text
 collect_riot_data
+        │
+        ▼
+transform_and_load
         │
         ▼
 run_eda_analysis
@@ -463,7 +507,8 @@ script_database.sql
 ## 5. Запуск ETL
 
 ```bash
-python riot_pipeline.py
+python main.py
+python run_transform_load.py
 ```
 
 ---
