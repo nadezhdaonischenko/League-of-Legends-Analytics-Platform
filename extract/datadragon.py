@@ -2,7 +2,7 @@ import requests
 import pandas as pd
 
 # ==================================================== 
-# 2. РАБОТА С RIOT DATA DRAGON 
+# 1. РАБОТА С RIOT DATA DRAGON 
 # ==================================================== 
 def generate_champions_dictionary(): 
     """ Скачиваем актуальный патч, создаем файл champions.csv и возвращаем словарь: 
