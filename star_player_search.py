@@ -85,28 +85,14 @@ def analyze_star_player(player_id: str) -> pd.DataFrame:
     Анализ активности игрока Riot в его домашнем регионе.
 
     Пример:
-        analyze_star_player("Hide on bush#KR")
+        analyze_star_player("Phanta#EUW")
     """
 
-    if "#" not in player_id:
-        raise ValueError(
-            "Необходимо указать Riot ID"
-            "в формате Name#Tag"
-            "(например: Phanta#EUW)"
-        )
-
     star_name, star_tag = player_id.split("#", 1)
-    star_name = star_name.strip()
-    star_tag = star_tag.strip()
 
     star_home_platform = TAG_TO_PLATFORM.get(
         star_tag.upper()
     )
-
-    if not star_home_platform:
-        raise ValueError(
-            f"Неизвестный тег региона: {star_tag}"
-        )
 
     star_home_cluster = REGIONS.get(
         star_home_platform,
@@ -182,7 +168,7 @@ def analyze_star_player(player_id: str) -> pd.DataFrame:
 
 if __name__ == "__main__":
 
-    PLAYER_NAME = "Phanta"
+    PLAYER_NAME = "Phanta"   # Здесь можно указать имя игрока, которого вы хотите проанализировать
 
     tag, puuid = find_player_tag(PLAYER_NAME)
 
@@ -191,6 +177,7 @@ if __name__ == "__main__":
     else:
         df = analyze_star_player(f"{PLAYER_NAME}#{tag}")
 
+    # Если данные успешно получены, можно сохранить при необходимости в CSV-файл
     # if not df.empty:
     #     df.to_csv("star_player.csv", index=False, encoding="utf-8-sig")
     #     print("\nФайл star_player.csv успешно сохранен.")
