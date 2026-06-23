@@ -61,7 +61,7 @@ League of Legends Analytics Platform — аналитическая платфо
 ## 📁 Структура проекта
 
 📦 LeagueOfLegendsAnalytics<br>
- │<br>
+│
 ├── 📄 [main.py](./main.py/)<br>
 ├── 📄 [run_transform_load.py](./run_transform_load.py/)<br>
 ├── 📄 [EDA.py](./EDA.py/)<br>
