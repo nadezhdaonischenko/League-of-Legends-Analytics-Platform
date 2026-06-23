@@ -99,15 +99,7 @@ def analyze_star_player(player_id: str) -> pd.DataFrame:
         "europe"
     )
 
-    print("\n=== Анализ звездного игрока ===")
-
     start_ts, end_ts = get_current_month_timestamps()
-
-    print(
-        f"Поиск игрока "
-        f"{player_id} "
-        f"({star_home_platform.upper()})"
-    )
 
     star_pipeline = RiotDataPipeline(
         platform_id=star_home_platform,
