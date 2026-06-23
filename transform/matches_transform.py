@@ -1,6 +1,5 @@
 import pandas as pd
 
-
 def transform_matches(raw_matches_list):
 
     df_matches = pd.DataFrame(raw_matches_list)
