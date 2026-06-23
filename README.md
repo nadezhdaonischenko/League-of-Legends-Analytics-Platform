@@ -68,15 +68,15 @@ League of Legends Analytics Platform — аналитическая платфо
 ├── 📄 [dashboard_etl.py](./dashboard_etl.py/)<br>
 ├── 📄 [dashboard.py](./dashboard.py/)<br>
 ├── 📄 [star_player_search.py](./star_player_search.py/)<br>
- │<br>
+│<br>
 ├── 📄 [run_daily_pipeline.bat](./run_daily_pipeline.bat/)<br>
 ├── 📄 [lol_daily_pipeline.py](./lol_daily_pipeline.py/)<br>
- │<br>
+│<br>
 ├── 📁 extract<br>
 │   ├── 📄 [riot_client.py](./riot_client.py/)<br>
 │   ├── 📄 [extractor.py](./extractor.py/)<br>
 │   └── 📄 [datadragon.py](./datadragon.py/)<br>
- │<br>
+│<br>
 ├── 📁 transform<br>
 │   ├── 📄 [matches_transform.py](./matches_transform.py/)<br>
 │   ├── 📄 [players_transform.py](./players_transform.py/)<br>
@@ -85,21 +85,21 @@ League of Legends Analytics Platform — аналитическая платфо
 ├── 📁 load<br>
 │   ├── 📄 [db.py](./db.py/)<br>
 │   └── 📄 [loaders.py](./loaders.py/)<br>
- │<br>
+│<br>
 ├── 📁 utils<br>
 │   ├── 📄 [config.py](./config.py/)<br>
 │   └── 📄 [file_storage.py](./file_storage.py/)<br>
- │<br>
+│<br>
 ├── 📁 data<br>
 │   ├── 📄 raw_matches.csv<br>
 │   ├── 📄 raw_participants.csv<br>
 │   └── 📄 players_registry.json<br>
- │<br>
+│<br>
 ├── 📄 [script_database.sql](./script_database.sql/)<br>
 ├── 📄 [requirements.txt](./requirements.txt/)<br>
 ├── 📄 .env<br>
 ├── 📄 pipeline.log<br>
- │<br>
+│<br>
 └── 📄 README.md
 ---
 
