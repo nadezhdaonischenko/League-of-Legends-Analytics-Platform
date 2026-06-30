@@ -1,10 +1,8 @@
 import argparse
-
 from run_extract import main as extract_main
 from run_transform_load import main as transform_main
 from EDA import run_exploratory_data_analysis
 from dashboard_etl import run_dashboard_etl
-
 
 def main():
 
