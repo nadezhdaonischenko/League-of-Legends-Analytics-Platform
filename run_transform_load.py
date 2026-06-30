@@ -3,7 +3,7 @@ from utils.file_storage import (
     load_raw_participants,
     load_players_registry
 )
-
+from load.db import engine
 from transform.matches_transform import transform_matches
 from transform.players_transform import transform_players
 from transform.champions_transform import transform_champions
@@ -39,16 +39,18 @@ def main():
     )
 
     # ---------------- LOAD ----------------
-    clear_daily_tables()
+    with engine.begin() as conn:
 
-    load_matches(df_matches)
+        clear_daily_tables(conn)
 
-    load_participants(df_raw_parts)
+        load_matches(conn, df_matches)
 
-    load_players(df_players)
+        load_participants(conn, df_raw_parts)
 
-    load_champions(df_champions)
+        load_players(conn, df_players)
 
+        load_champions(conn, df_champions)
+        
     print("\nTransform + Load завершены успешно!")
 
 
