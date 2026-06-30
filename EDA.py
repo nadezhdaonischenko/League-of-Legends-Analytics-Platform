@@ -2,56 +2,22 @@
 # ИССЛЕДОВАТЕЛЬСКИЙ АНАЛИЗ ДАННЫХ
 # ====================================================
 
-import os
-import pandas as pd
-import numpy as np
-
-from dotenv import load_dotenv
-from sqlalchemy import create_engine
-
-load_dotenv()
-
-DB_USER = "postgres"
-DB_PASSWORD = os.getenv("parole_postgresql", "")
-DB_HOST = "localhost"
-DB_PORT = "5432"
-DB_NAME = "lol_db"
-
-engine = create_engine(
-    f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-)
+from analytics.data_loader import load_analysis_data
 
 def run_exploratory_data_analysis():
+
     try:
-        df_players = pd.read_sql("""
-                                 SELECT *
-                                 FROM players_daily
-                                 WHERE snapshot_date = (
-                                 SELECT MAX(snapshot_date)
-                                 FROM players_daily
-                                 )
-                                 """, con=engine)
-        df_matches = pd.read_sql("""
-                                 SELECT * 
-                                 FROM matches
-                                 """, con=engine)
-        df_champions = pd.read_sql("""
-                                 SELECT *
-                                 FROM champions_daily
-                                 WHERE snapshot_date = (
-                                 SELECT MAX(snapshot_date)
-                                 FROM champions_daily
-                                 )
-                                 """, con=engine)
-        df_parts = pd.read_sql("""
-                               SELECT * 
-                               FROM participants
-                               """, con=engine)
+        (
+            df_players,
+            df_matches,
+            df_champions,
+            df_parts
+        ) = load_analysis_data()
 
-    except FileNotFoundError as e:
-        print(f"Ошибка: Не найден файл {e.filename}.")
+    except Exception as e:
+        print(f"Ошибка загрузки данных: {e}")
         return
-
+    
 # ====================================================
 # 1: Распределение игроков по очкам лиги (LP)
 # ====================================================
@@ -159,13 +125,6 @@ def run_exploratory_data_analysis():
         f"{popular_champ.index[0]} "
         f"(Сыграно игр: {popular_champ.values[0]})"
     )
-    
-
-    print(
-        f"Средняя длительность матча за текущий месяц: "
-        f"{avg_duration_min} минут"
-    )
-
 
     print("\n--- ТОП-5 ИГРОКОВ ПО КОЛИЧЕСТВУ ОЧКОВ ЛИГИ (LP) ---")
 
