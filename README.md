@@ -50,11 +50,11 @@ League of Legends Analytics Platform — аналитическая платфо
                         ▼
                    PostgreSQL
                         │
-            ┌───────────┴───────────┐
-            ▼                       ▼
-         EDA.py             dashboard_etl.py
-            │                           │
-            └───────────┬───────────┘
+            ┌─────────┴───────────┐
+            ▼                        ▼
+         EDA.py                dashboard_etl.py
+            │                         │
+            └─────────┬───────────┘
                         ▼
                   Dash Dashboard
 ```
