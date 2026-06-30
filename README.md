@@ -35,10 +35,13 @@ League of Legends Analytics Platform — аналитическая платфо
                         │
                         ▼
                      main.py
-                (EXTRACT layer)
                         │
                         ▼
               CSV/JSON files (raw data)
+│
+                        ▼
+                  run_extract.py
+                 (EXTRACT layer)
                         │
                         ▼
               run_transform_load.py
@@ -63,6 +66,7 @@ League of Legends Analytics Platform — аналитическая платфо
 📦 LeagueOfLegendsAnalytics<br>
 │<br>
 ├── 📄 [main.py](./main.py/)<br>
+├── 📄 [run_extract.py](./run_extract.py/)<br>
 ├── 📄 [run_transform_load.py](./run_transform_load.py/)<br>
 ├── 📄 [EDA.py](./EDA.py/)<br>
 ├── 📄 [dashboard_etl.py](./dashboard_etl.py/)<br>
@@ -94,6 +98,8 @@ League of Legends Analytics Platform — аналитическая платфо
 │   ├── 📄 raw_matches.csv<br>
 │   ├── 📄 raw_participants.csv<br>
 │   └── 📄 players_registry.json<br>
+├── 📁 analytics<br>
+│   ├── 📄 data_loader.py<br>
 │<br>
 ├── 📄 [script_database.sql](./script_database.sql/)<br>
 ├── 📄 [requirements.txt](./requirements.txt/)<br>
@@ -306,7 +312,9 @@ Scatter Plot показывает:
 # 🔄 ETL-процесс
 
 ## [main.py](./main.py/)
+**Модуль запуска**
 
+## [run_extact.py](./run_extract.py/)
 **Модуль слоя Extract**
 
 Выполняет:
@@ -349,7 +357,6 @@ Scatter Plot показывает:
 # ⏰ Автоматизация
 
 В проекте предусмотрено два варианта автоматизации.
-
 
 
 ---
@@ -504,32 +511,35 @@ script_database.sql
 
 ---
 
-## 5. Запуск ETL
+## 5. Запуск проекта
+
+Выполнить необходимый этап пайплайна через CLI:
 
 ```bash
-python main.py
-python run_transform_load.py
+python main.py --stage extract
+```
+
+```bash
+python main.py --stage transform
+```
+
+```bash
+python main.py --stage eda
+```
+
+```bash
+python main.py --stage dashboard
+```
+
+или полностью выполнить весь ETL-пайплайн:
+
+```bash
+python main.py --stage pipeline
 ```
 
 ---
 
-## 6. Аналитическая обработка
-
-```bash
-python EDA.py
-```
-
----
-
-## 7. Обновление витрин
-
-```bash
-python dashboard_etl.py
-```
-
----
-
-## 8. Запуск дашборда
+## 6. Запуск дашборда
 
 ```bash
 python dashboard.py
