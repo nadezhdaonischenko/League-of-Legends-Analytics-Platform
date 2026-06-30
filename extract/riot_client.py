@@ -1,9 +1,7 @@
 import time
 from datetime import datetime, timezone
-
 import requests
 from ratelimit import sleep_and_retry, limits
-
 from utils.config import TIERS
 
 REGION_MAPPING = {
