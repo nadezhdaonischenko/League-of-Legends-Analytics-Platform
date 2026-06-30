@@ -4,6 +4,7 @@ from sqlalchemy.dialects.postgresql import insert
 from load.db import engine
 
 def upsert_dataframe(
+        conn,
         df,
         table_name,
         conflict_columns):
@@ -27,30 +28,28 @@ def upsert_dataframe(
         index_elements=conflict_columns
     )
 
-    with engine.begin() as conn:
-        conn.execute(stmt)
+    conn.execute(stmt)
 
-def clear_daily_tables():
+def clear_daily_tables(conn):
 
-    with engine.begin() as conn:
-
-        conn.execute(
-            text(
-                "DELETE FROM players_daily "
-                "WHERE snapshot_date = CURRENT_DATE"
-            )
+    conn.execute(
+        text(
+            "DELETE FROM players_daily "
+            "WHERE snapshot_date = CURRENT_DATE"
         )
+    )
 
-        conn.execute(
-            text(
-                "DELETE FROM champions_daily "
-                "WHERE snapshot_date = CURRENT_DATE"
-            )
+    conn.execute(
+        text(
+            "DELETE FROM champions_daily "
+            "WHERE snapshot_date = CURRENT_DATE"
         )
+    )
 
-def load_matches(df_matches):
+def load_matches(conn, df_matches):
 
     upsert_dataframe(
+        conn,
         df_matches,
         "matches",
         ["match_id"]
@@ -58,9 +57,10 @@ def load_matches(df_matches):
 
     print("Таблица matches успешно загружена")
 
-def load_participants(df_parts):
+def load_participants(conn, df_parts):
 
     upsert_dataframe(
+        conn,
         df_parts,
         "participants",
         ["match_id", "puuid"]
@@ -68,22 +68,22 @@ def load_participants(df_parts):
 
     print("Таблица participants успешно загружена")
 
-def load_players(df_players):
+def load_players(conn,df_players):
 
     df_players.to_sql(
         "players_daily",
-        engine,
+        con=conn,
         if_exists="append",
         index=False
     )
 
     print("Таблица players успешно загружена")
 
-def load_champions(df_champions):
+def load_champions(conn,df_champions):
 
     df_champions.to_sql(
         "champions_daily",
-        engine,
+        con=conn,
         if_exists="append",
         index=False
     )
