@@ -98,7 +98,7 @@ League of Legends Analytics Platform — аналитическая платфо
 │   ├── 📄 raw_matches.csv<br>
 │   ├── 📄 raw_participants.csv<br>
 │   └── 📄 players_registry.json<br>
-│
+│<br>
 ├── 📁 analytics<br>
 │   ├── 📄 [data_loader.py](./data_loader.py/)<br>
 │<br>
