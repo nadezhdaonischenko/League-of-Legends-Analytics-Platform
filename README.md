@@ -77,22 +77,22 @@ League of Legends Analytics Platform — аналитическая платфо
 ├── 📄 [lol_daily_pipeline.py](./lol_daily_pipeline.py/)<br>
 │<br>
 ├── 📁 extract<br>
-│   ├── 📄 [riot_client.py](.extract/riot_client.py/)<br>
-│   ├── 📄 [extractor.py](./extractor.py/)<br>
-│   └── 📄 [datadragon.py](./datadragon.py/)<br>
+│   ├── 📄 [riot_client.py](./extract/riot_client.py/)<br>
+│   ├── 📄 [extractor.py](./extract/extractor.py/)<br>
+│   └── 📄 [datadragon.py](./extract/datadragon.py/)<br>
 │<br>
 ├── 📁 transform<br>
-│   ├── 📄 [matches_transform.py](./matches_transform.py/)<br>
-│   ├── 📄 [players_transform.py](./players_transform.py/)<br>
-│   └── 📄 [champions_transform.py](./champions_transform.py/)<br>
+│   ├── 📄 [matches_transform.py](./transform/matches_transform.py/)<br>
+│   ├── 📄 [players_transform.py](./transform/players_transform.py/)<br>
+│   └── 📄 [champions_transform.py](./transform/champions_transform.py/)<br>
 │<br>
 ├── 📁 load<br>
-│   ├── 📄 [db.py](./db.py/)<br>
-│   └── 📄 [loaders.py](./loaders.py/)<br>
+│   ├── 📄 [db.py](./load/db.py/)<br>
+│   └── 📄 [loaders.py](./load/loaders.py/)<br>
 │<br>
 ├── 📁 utils<br>
-│   ├── 📄 [config.py](./config.py/)<br>
-│   └── 📄 [file_storage.py](./file_storage.py/)<br>
+│   ├── 📄 [config.py](./utils/config.py/)<br>
+│   └── 📄 [file_storage.py](./utils/file_storage.py/)<br>
 │<br>
 ├── 📁 data<br>
 │   ├── 📄 raw_matches.csv<br>
@@ -100,7 +100,7 @@ League of Legends Analytics Platform — аналитическая платфо
 │   └── 📄 players_registry.json<br>
 │<br>
 ├── 📁 analytics<br>
-│   ├── 📄 [data_loader.py](./data_loader.py/)<br>
+│   ├── 📄 [data_loader.py](./analytics/data_loader.py/)<br>
 │<br>
 ├── 📄 [script_database.sql](./script_database.sql/)<br>
 ├── 📄 [requirements.txt](./requirements.txt/)<br>
