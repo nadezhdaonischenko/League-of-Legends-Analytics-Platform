@@ -63,51 +63,54 @@ League of Legends Analytics Platform — аналитическая платфо
 
 ## 📁 Структура проекта
 
-📦 LeagueOfLegendsAnalytics<br>
-│<br>
-├── 📄 [main.py](./main.py/)<br>
-├── 📄 [run_extract.py](./run_extract.py/)<br>
-├── 📄 [run_transform_load.py](./run_transform_load.py/)<br>
-├── 📄 [EDA.py](./EDA.py/)<br>
-├── 📄 [dashboard_etl.py](./dashboard_etl.py/)<br>
-├── 📄 [dashboard.py](./dashboard.py/)<br>
-├── 📄 [star_player_search.py](./star_player_search.py/)<br>
-│<br>
-├── 📄 [run_daily_pipeline.bat](./run_daily_pipeline.bat/)<br>
-├── 📄 [lol_daily_pipeline.py](./lol_daily_pipeline.py/)<br>
-│<br>
-├── 📁 extract<br>
-│   ├── 📄 [riot_client.py](./extract/riot_client.py/)<br>
-│   ├── 📄 [extractor.py](./extract/extractor.py/)<br>
-│   └── 📄 [datadragon.py](./extract/datadragon.py/)<br>
-│<br>
-├── 📁 transform<br>
-│   ├── 📄 [matches_transform.py](./transform/matches_transform.py/)<br>
-│   ├── 📄 [players_transform.py](./transform/players_transform.py/)<br>
-│   └── 📄 [champions_transform.py](./transform/champions_transform.py/)<br>
-│<br>
-├── 📁 load<br>
-│   ├── 📄 [db.py](./load/db.py/)<br>
-│   └── 📄 [loaders.py](./load/loaders.py/)<br>
-│<br>
-├── 📁 utils<br>
-│   ├── 📄 [config.py](./utils/config.py/)<br>
-│   └── 📄 [file_storage.py](./utils/file_storage.py/)<br>
-│<br>
-├── 📁 data<br>
-│   ├── 📄 raw_matches.csv<br>
-│   ├── 📄 raw_participants.csv<br>
-│   └── 📄 players_registry.json<br>
-│<br>
-├── 📁 analytics<br>
-│   ├── 📄 [data_loader.py](./analytics/data_loader.py/)<br>
-│<br>
-├── 📄 [script_database.sql](./script_database.sql/)<br>
-├── 📄 [requirements.txt](./requirements.txt/)<br>
-├── 📄 .env<br>
-├── 📄 pipeline.log<br>
-│<br>
-└── 📄 README.md
+```text
+LeagueOfLegendsAnalytics
+│
+├── main.py
+├── run_extract.py
+├── run_transform_load.py
+├── EDA.py
+├── dashboard_etl.py
+├── dashboard.py
+├── star_player_search.py
+│
+├── run_daily_pipeline.bat
+├── lol_daily_pipeline.py
+│
+├── extract/
+├── transform/
+├── load/
+├── analytics/
+├── utils/
+├── data/
+│
+├── script_database.sql
+├── requirements.txt
+└── README.md
+```
+
+### Основные модули
+
+| Модуль | Назначение |
+|--------|------------|
+| [`main.py`](./main.py) | CLI-диспетчер проекта. Запуск отдельных этапов или полного ETL-пайплайна. |
+| [`run_extract.py`](./run_extract.py) | Извлечение данных из Riot API и сохранение сырых данных. |
+| [`run_transform_load.py`](./run_transform_load.py) | Трансформация данных и загрузка в PostgreSQL. |
+| [`EDA.py`](./EDA.py) | Исследовательский анализ данных (EDA). |
+| [`dashboard_etl.py`](./dashboard_etl.py) | Подготовка витрин данных для Dash Dashboard. |
+| [`dashboard.py`](./dashboard.py) | Веб-интерфейс аналитического дашборда. |
+| [`star_player_search.py`](./star_player_search.py) | Анализ активности профессиональных игроков League of Legends. |
+
+### Основные директории
+
+| Директория | Назначение |
+|------------|------------|
+| [`extract`](./extract/) | Получение данных из Riot API и Data Dragon. |
+| [`transform`](./transform/) | Преобразование сырых данных в аналитические структуры. |
+| [`load`](./load/) | Загрузка данных в PostgreSQL. |
+| [`analytics`](./analytics/) | Аналитические запросы и подготовка данных для EDA. |
+| [`utils`](./utils/) | Конфигурация проекта и вспомогательные функции. |
+| [`data`](./data/) | Хранение сырых CSV-файлов и служебных данных. |
 ---
 
 ## 📊 Источники данных
