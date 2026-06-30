@@ -1,8 +1,6 @@
 from datetime import date
-
 import numpy as np
 import pandas as pd
-
 
 def transform_champions(df_raw_parts):
 
