@@ -77,7 +77,7 @@ League of Legends Analytics Platform — аналитическая платфо
 ├── 📄 [lol_daily_pipeline.py](./lol_daily_pipeline.py/)<br>
 │<br>
 ├── 📁 extract<br>
-│   ├── 📄 [riot_client.py](./riot_client.py/)<br>
+│   ├── 📄 [riot_client.py](.extract/riot_client.py/)<br>
 │   ├── 📄 [extractor.py](./extractor.py/)<br>
 │   └── 📄 [datadragon.py](./datadragon.py/)<br>
 │<br>
