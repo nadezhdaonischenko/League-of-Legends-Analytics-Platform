@@ -1,43 +1,50 @@
-from dotenv import load_dotenv
-import os
-import pandas as pd
+import argparse
 
-from extract.riot_client import set_api_key
-from extract.extractor import extract_data
+from run_extract import main as extract_main
+from run_transform_load import main as transform_main
+from EDA import run_exploratory_data_analysis
+from dashboard_etl import run_dashboard_etl
 
-from utils.config import API_KEY
-
-from utils.file_storage import (
-    save_raw_data,
-    save_players_registry
-)
-
-load_dotenv()
-
-set_api_key(API_KEY)
-
-if not API_KEY:
-    raise ValueError(
-        "Добавьте RIOT_API_KEY в .env"
-    )
 
 def main():
 
-    # ---------------- EXTRACT ----------------
-    raw_matches_list, raw_participants_list, players_registry = extract_data()
-
-    save_raw_data(
-        raw_matches_list,
-        raw_participants_list
+    parser = argparse.ArgumentParser(
+        description="League of Legends Analytics Pipeline"
     )
 
-    save_players_registry(
-    players_registry
+    parser.add_argument(
+        "--stage",
+        required=True,
+        choices=[
+            "extract",
+            "transform",
+            "eda",
+            "dashboard",
+            "pipeline"
+        ],
+        help="Pipeline stage to execute."
     )
 
-    if not raw_matches_list:
-        print("Данные не собраны.")
-        return
+    args = parser.parse_args()
+
+    if args.stage == "extract":
+        extract_main()
+
+    elif args.stage == "transform":
+        transform_main()
+
+    elif args.stage == "eda":
+        run_exploratory_data_analysis()
+
+    elif args.stage == "dashboard":
+        run_dashboard_etl()
+
+    elif args.stage == "pipeline":
+        extract_main()
+        transform_main()
+        run_exploratory_data_analysis()
+        run_dashboard_etl()
+
 
 if __name__ == "__main__":
     main()
