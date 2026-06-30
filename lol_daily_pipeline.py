@@ -7,7 +7,7 @@ from datetime import datetime
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 
-from main import main as extract_main
+from run_extract import main as extract_main
 from run_transform_load import main as transform_load_main
 from EDA import run_exploratory_data_analysis
 from dashboard_etl import run_dashboard_etl
@@ -23,7 +23,7 @@ default_args = {
 with DAG(
     dag_id="lol_daily_pipeline",
     default_args=default_args,
-    description="Daily Riot ETL, analytics and dashboard refresh",
+    description="Daily League of Legends ETL pipeline",
     start_date=datetime(2026, 6, 1),
     schedule="0 2 * * *",
     catchup=False,
@@ -33,25 +33,25 @@ with DAG(
     
 
     # ---------------- EXTRACT ----------------
-    extract_data_task = PythonOperator(
+    extract_data = PythonOperator(
         task_id="extract_riot_data",
         python_callable=extract_main
     )
 
     # ---------------- TRANSFORM + LOAD ----------------
-    transform_load_task = PythonOperator(
+    transform_load = PythonOperator(
         task_id="transform_and_load",
         python_callable=transform_load_main
     )
 
     # ---------------- EDA ----------------
-    run_analytics_task = PythonOperator(
+    run_analytics = PythonOperator(
         task_id="run_eda_analysis",
         python_callable=run_exploratory_data_analysis
     )
 
     # ---------------- DASHBOARD ----------------
-    refresh_dashboard_task = PythonOperator(
+    refresh_dashboard = PythonOperator(
         task_id="refresh_dashboard_tables",
         python_callable=run_dashboard_etl
     )
