@@ -37,12 +37,12 @@ League of Legends Analytics Platform — аналитическая платфо
                      main.py
                         │
                         ▼
-              CSV/JSON files (raw data)
-│
-                        ▼
                   run_extract.py
                  (EXTRACT layer)
                         │
+                        ▼
+               CSV/JSON files (raw data)
+                        |
                         ▼
               run_transform_load.py
                (TRANSFORM + LOAD)
