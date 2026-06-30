@@ -53,7 +53,7 @@ League of Legends Analytics Platform — аналитическая платфо
             ┌───────────┴───────────┐
             ▼                       ▼
          EDA.py             dashboard_etl.py
-            │                       │
+            │                           │
             └───────────┬───────────┘
                         ▼
                   Dash Dashboard
