@@ -224,7 +224,7 @@ LeagueOfLegendsAnalytics
 
 ---
 
-# 📈 [Dashboard](./screenshot_dashboard.jpg/)
+# 📈 [Dashboard](./screenshot_dashboard.png/)
 
 Интерактивный веб-дашборд разработан с использованием Dash и Plotly.
 
