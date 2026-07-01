@@ -555,7 +555,7 @@ def update_dashboard(selected_region, selected_period, selected_champion):
                 df_lp, 
                 x='league_points', 
                 color='tier',
-                nbins=10, 
+                nbins=30, 
                 barmode='group',
                 title="📊 Распределение League Points",
                 labels={
